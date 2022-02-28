@@ -31,3 +31,16 @@ ngramr::ggram(p, year_start = 1800, google_theme = TRUE) +
   theme(legend.direction="vertical")
 # Pass ngram data rather than phrases
 ngramr::ggram(hacker) + facet_wrap(~ Corpus)
+
+#
+x = ngramr::ngram("corporatocracy", corpus = "eng_2019")
+y = ngramr::ngram("corporatocracy", corpus = "eng_fiction_2019")
+
+plot(x$Year,x$Frequency, type="l",col="red")
+lines(x$Year,y$Frequency,col="green")
+
+plot(x$Year,x$Frequency, type="l",col="red")
+lines(x$Year,x$Frequency-y$Frequency,col="blue")
+
+plot(x$Year,y$Frequency, type="l",col="red")
+lines(x$Year,x$Frequency-y$Frequency,col="blue")
