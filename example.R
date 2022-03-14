@@ -33,8 +33,8 @@ ngramr::ggram(p, year_start = 1800, google_theme = TRUE) +
 ngramr::ggram(hacker) + facet_wrap(~ Corpus)
 
 #
-x = ngramr::ngram("corporatocracy", corpus = "eng_2019")
-y = ngramr::ngram("corporatocracy", corpus = "eng_fiction_2019")
+x = ngramr::ngram("corporatocracy", corpus = "eng_2019", count = TRUE, case_ins = TRUE, aggregate = TRUE, smoothing = FALSE)
+y = ngramr::ngram("corporatocracy", corpus = "eng_fiction_2019", count = TRUE, case_ins = TRUE, aggregate = TRUE, smoothing = FALSE)
 
 plot(x$Year,x$Frequency, type="l",col="red")
 lines(x$Year,y$Frequency,col="green")
@@ -44,3 +44,8 @@ lines(x$Year,x$Frequency-y$Frequency,col="blue")
 
 plot(x$Year,y$Frequency, type="l",col="red")
 lines(x$Year,x$Frequency-y$Frequency,col="blue")
+
+x = ngramr::ngram("dark art", corpus = "eng_2019", count = TRUE, case_ins = TRUE, aggregate = TRUE, smoothing = FALSE)
+y = ngramr::ngram("dark art", corpus = "eng_fiction_2019", count = TRUE, case_ins = TRUE, aggregate = TRUE, smoothing = FALSE)
+plot(x$Year,x$Count, type="l",col="red")
+lines(x$Year,y$Count, col="green")
