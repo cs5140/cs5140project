@@ -45,7 +45,16 @@ lines(x$Year,x$Frequency-y$Frequency,col="blue")
 plot(x$Year,y$Frequency, type="l",col="red")
 lines(x$Year,x$Frequency-y$Frequency,col="blue")
 
-x = ngramr::ngram("dark art", corpus = "eng_2019", count = TRUE, case_ins = TRUE, aggregate = TRUE, smoothing = FALSE)
+x = ngramr::ngram("dark arts", corpus = "eng_2019", count = TRUE, case_ins = TRUE, aggregate = TRUE, smoothing = FALSE)
 y = ngramr::ngram("dark art", corpus = "eng_fiction_2019", count = TRUE, case_ins = TRUE, aggregate = TRUE, smoothing = FALSE)
 plot(x$Year,x$Count, type="l",col="red")
 lines(x$Year,y$Count, col="green")
+
+data <- read.csv(file = "words.csv", header = FALSE)
+for(line in data){
+  print(line)
+  x = ngramr::ngram(line, corpus = "eng_2019", count = TRUE, case_ins = TRUE, aggregate = TRUE, smoothing = FALSE)
+  y = ngramr::ngram(line, corpus = "eng_fiction_2019", count = TRUE, case_ins = TRUE, aggregate = TRUE, smoothing = FALSE)
+  plot(x$Year,x$Count, type="l",col="red")
+  lines(x$Year,y$Count, col="green")
+}
