@@ -46,6 +46,12 @@ plot(x$Year,y$Frequency, type="l",col="red")
 lines(x$Year,x$Frequency-y$Frequency,col="blue")
 
 x = ngramr::ngram("dark arts", corpus = "eng_2019", count = TRUE, case_ins = TRUE, aggregate = TRUE, smoothing = FALSE)
+df <- data.frame(Year = c(x$Year),
+                 Freq = c(x$Frequency),
+                 Count = c(x$Count)
+)
+write.csv(df,"/Users/scottk/PycharmProjects/MachineLearning/textfiles/mlwords/x.csv", row.names = FALSE)
+
 y = ngramr::ngram("dark art", corpus = "eng_fiction_2019", count = TRUE, case_ins = TRUE, aggregate = TRUE, smoothing = FALSE)
 plot(x$Year,x$Count, type="l",col="red")
 lines(x$Year,y$Count, col="green")
@@ -55,6 +61,16 @@ for(line in data){
   print(line)
   x = ngramr::ngram(line, corpus = "eng_2019", count = TRUE, case_ins = TRUE, aggregate = TRUE, smoothing = FALSE)
   y = ngramr::ngram(line, corpus = "eng_fiction_2019", count = TRUE, case_ins = TRUE, aggregate = TRUE, smoothing = FALSE)
-  plot(x$Year,x$Count, type="l",col="red")
-  lines(x$Year,y$Count, col="green")
+#  plot(x$Year,x$Count, type="l",col="red")
+#  lines(x$Year,y$Count, col="green")
+  df <- data.frame(Year = c(x$Year),
+                   Freq = c(x$Frequency),
+                   Count = c(x$Count)
+  )
+  write.csv(df,paste("/Users/scottk/PycharmProjects/MachineLearning/textfiles/mlwords/",line,"_norm.csv",sep=""), row.names = FALSE)
+  df <- data.frame(Year = c(y$Year),
+                   Freq = c(y$Frequency),
+                   Count = c(y$Count)
+  )
+  write.csv(df,"/Users/scottk/PycharmProjects/MachineLearning/textfiles/mlwords/"+line+"_fict.csv", row.names = FALSE)
 }
