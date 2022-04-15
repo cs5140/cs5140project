@@ -105,6 +105,16 @@ def proj2():
 
     for meta in meta_arr:
         try:
+            # if meta[0] == "dark art":
+            #     fict_arr = conv_str_array(meta[1][50:])
+            #     norm_arr = conv_str_array(meta[2][50:])
+            #     for i in range(len(meta[1])):
+            #         farr = np.array(fict_arr) / np.amax(fict_arr)
+            #         narr = np.array(norm_arr)/np.amax(norm_arr)
+            #         plt.plot(farr)
+            #         plt.plot(narr)
+            #     plt.show()
+            #     return ""
             fict_arr = conv_str_array(meta[1][50:])
             norm_arr = conv_str_array(meta[2][50:])
             scale = np.amax(fict_arr)/np.amax(norm_arr)
@@ -134,8 +144,8 @@ def proj2():
     plt.scatter(c2[:, 0], c2[:, 1])
     # for l,x,y in zip(word_arr,cluster.cluster_centers_[:, 0], cluster.cluster_centers_[:, 1]):
     #     plt.annotate(l,xy=(x,y))
-    for l,x,y in zip(word_arr[:],c2[:,0],c2[:,1]):
-        plt.annotate(l,xy=(x,y))
+    # for l,x,y in zip(word_arr[:],c2[:,0],c2[:,1]):
+    #     plt.annotate(l,xy=(x,y))
     #plt.yscale("log")
     plt.show()
 
@@ -215,6 +225,7 @@ def proj3():
     plt.show()
 
 if __name__ == '__main__':
+    proj2()
     while True:
         new_word  = input("Please input your word")
         csvfile = open("new_word.csv","w")
